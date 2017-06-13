@@ -10,12 +10,12 @@ c = 4
 
 # Polynomial using the LSQ fit.
 
-a_lsq = 3.79
-b_lsq = 1.8
-c_lsq = -49
+a_lsq = 3.89
+b_lsq = 1.62
+c_lsq = 3.08
 
 # x_achse
-x_achse = np.linspace(-10.0, 10.0, 100)
+x_achse = np.linspace(-2.0, 2.0, 100)
 
 # Create variables to store the original, noisy data set.
 x = []
