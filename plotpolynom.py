@@ -43,9 +43,6 @@ b_lsq = coeff_lsq[1]
 c_lsq = coeff_lsq[2]
 d_lsq = coeff_lsq[3]
 
-# x_achse
-x_achse = np.linspace(0, 400, 400)
-
 # Create variables to store the original, noisy data set.
 x = []
 y_noise = []
@@ -65,9 +62,20 @@ q = open('/home/nikhilesh/DataTextFiles/used_consensus_set.txt', 'r')
 for lines in q:
 	currentline = lines.split(" ")
 	x_cons.append(currentline[0])
-	y_cons.append(currentline[1])
+	y_cons.append(currentline[1]) # No need to negate. Already done, when reading into cpp program.
 q.close()
 
+x_min = 1000.0
+x_max = -1000.0
+for item in x_cons:
+	l = float(item)
+	if l>x_max:
+		x_max = l
+	elif l<x_min:
+		x_min = l
+
+# x_achse
+x_achse = np.linspace(x_min, x_max, 400)
 
 # Sample the original polynomial.
 #y_orig = a*x_achse*x_achse*x_achse + b*x_achse*x_achse + c*x_achse + d
@@ -75,7 +83,6 @@ q.close()
 # Sample the LSQ fitted polynomial.
 y_lsq = a_lsq*x_achse*x_achse*x_achse + b_lsq*x_achse*x_achse + c_lsq*x_achse + d_lsq
 y_last = a_last*x_achse*x_achse*x_achse + b_last*x_achse*x_achse + c_last*x_achse + d_last
-
 
 # Plot the data.
 plt.plot(x, y_noise, 'ro')
