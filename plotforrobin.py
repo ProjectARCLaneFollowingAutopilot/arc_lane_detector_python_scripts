@@ -6,14 +6,12 @@ x = []
 y = []
 
 # Read in the data set.
-f = open('/home/nikhilesh/DataTextFiles/data.txt', 'r')
+f = open('/home/nikhilesh/DataTextFiles/RobinAlgo/a_oben.txt', 'r')
 for line in f:
 	currentline = line.split(" ")
 	x.append(currentline[0])
-	y.append(currentline[1])
+	y.append('-' + currentline[1])
 f.close()
-
-print(str(len(x))+' '+str(len(y_noise)))
 
 
 # Plot the data.

@@ -22,9 +22,9 @@ for i in range(0, len(coeff_orig)):
 e.close()  # you can omit in most cases as the destructor will call it
 
 # Create the data set (and add noise).
-x = np.linspace(-2.0, 2.0, 200)
+x = np.linspace(-2.0, 2.0, 2000)
 y = a*x*x*x + b*x*x + c*x + d
-noise = np.random.normal(0, 1, 200)
+noise = np.random.normal(0, 1, 2000)
 y_noise = y + noise
 
 # Write x, y(x) directly to file.
