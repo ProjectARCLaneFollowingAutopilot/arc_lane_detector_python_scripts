@@ -6,7 +6,7 @@ x = []
 y = []
 
 # Read in the data set.
-f = open('/home/nikhilesh/DataTextFiles/RobinAlgo/a_oben.txt', 'r')
+f = open('/home/nikhilesh/DataTextFiles/curved/data2_right.txt', 'r')
 for line in f:
 	currentline = line.split(" ")
 	x.append(currentline[0])

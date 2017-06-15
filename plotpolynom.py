@@ -58,7 +58,7 @@ for item in x_cons:
 		x_min = l
 
 # Create the x-axis for evaluating the found polynomials.
-x_achse = np.linspace(x_min, x_max, 400)
+x_achse = np.linspace(-100, 400, 500)
 
 # Sample the polynomial, which fits the random points.
 y_last = a_last*x_achse*x_achse*x_achse + b_last*x_achse*x_achse + c_last*x_achse + d_last
@@ -72,8 +72,8 @@ plt.plot(x_cons, y_cons, 'bo')
 plt.plot(x_achse, y_lsq, 'g')
 plt.plot(x_achse, y_last, 'k')
 #axes = plt.gca()
-#axes.set_xlim([0,800])
-#axes.set_ylim([-800,0])
+#axes.set_xlim([-100,400])
+#axes.set_ylim([-300,100])
 plt.xlabel('x')
 plt.ylabel('f(x)')
 plt.show()
