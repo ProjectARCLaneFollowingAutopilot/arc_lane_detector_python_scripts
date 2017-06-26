@@ -2,9 +2,10 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
+from math import sqrt
 
-filename = '/home/nikhilesh/Desktop/labelled_data/Klausen/klausen1.txt'
-
+filename_raw_r = '/home/nikhilesh/Desktop/labelled_data/Zurich/Uberland/ueberland1.txt'
+filename_result_w = '/home/nikhilesh/Desktop/labelled_data/Zurich/Uberland/ueberland1_result.txt'
 
 
 # Read in data.
@@ -32,7 +33,7 @@ right_bottom_vec_hand_y = []
 right_top_vec_hand_x = []
 right_top_vec_hand_y = []
 
-data = open(filename, 'r')
+data = open(filename_raw_r, 'r')
 for lines in data:
 	currentline = lines.split(" ")
 
@@ -80,3 +81,32 @@ for i in range(0, len(left_bottom_vec_algo_x)):
 	intersection_left_hand.append( float(left_top_vec_hand_y[i]) - slope_left_hand[i]*float(left_top_vec_hand_x[i]))
 	slope_right_hand.append((float(right_top_vec_hand_y[i]) - float(right_bottom_vec_hand_y[i]))/(float(right_top_vec_hand_x[i]) - float(right_bottom_vec_hand_x[i])))
 	intersection_right_hand.append( float(right_top_vec_hand_y[i]) - slope_right_hand[i]*float(right_top_vec_hand_x[i]))
+
+error_rms_slope_left = 0
+error_rms_intersection_left = 0
+error_rms_slope_right = 0
+error_rms_intersection_right = 0
+
+
+for i in range(0, len(left_bottom_vec_algo_x)):
+	error_rms_slope_left = error_rms_slope_left + pow(slope_left_algo[i] - slope_left_hand[i], 2) 
+	error_rms_intersection_left = error_rms_intersection_left + pow(intersection_left_algo[i] - intersection_left_hand[i], 2) 
+	error_rms_slope_right = error_rms_slope_right + pow(slope_right_algo[i] - slope_right_hand[i], 2) 
+	error_rms_intersection_right = error_rms_intersection_right + pow(intersection_right_algo[i] - intersection_right_hand[i], 2) 
+
+error_rms_slope_left = error_rms_slope_left/len(slope_left_algo)
+error_rms_intersection_left = error_rms_intersection_left/len(intersection_left_algo)
+error_rms_slope_right = error_rms_slope_right/len(slope_right_algo)
+error_rms_intersection_right = error_rms_intersection_right/len(intersection_right_algo)
+
+error_rms_slope_left = sqrt(error_rms_slope_left)
+error_rms_intersection_left = sqrt(error_rms_intersection_left)
+error_rms_slope_right = sqrt(error_rms_slope_right)
+error_rms_intersection_right = sqrt(error_rms_intersection_right)
+
+error = open(filename_result_w, 'w')
+error.write("Error_RMS in Slope left = " + str(error_rms_slope_left) + '\n')
+error.write("Error_RMS in Intersection left = " + str(error_rms_intersection_left) + '\n')
+error.write("Error_RMS in Slope right = " + str(error_rms_slope_right) + '\n')
+error.write("Error_RMS in Intersection right = " + str(error_rms_intersection_right) + '\n')
+error.close()
