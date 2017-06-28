@@ -4,11 +4,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 from math import sqrt
 
+# Define the text files, where to read in the raw data from and where to write the results to.
 filename_raw_r = '/home/nikhilesh/Desktop/labelled_data/Zurich/Uberland/ueberland1.txt'
 filename_result_w = '/home/nikhilesh/Desktop/labelled_data/Zurich/Uberland/ueberland1_result.txt'
 
 
-# Read in data.
+# Read in the data.
 left_bottom_vec_algo_x = []
 left_bottom_vec_algo_y = []
 
@@ -62,7 +63,7 @@ for lines in data:
 	right_top_vec_hand_y.append(currentline[15])
 data.close()
 
-# Calculate slopes and intersections.
+# Calculate the slopes and intersections with the y-axis.
 slope_left_algo = []
 intersection_left_algo = []
 slope_right_algo = []
@@ -82,11 +83,11 @@ for i in range(0, len(left_bottom_vec_algo_x)):
 	slope_right_hand.append((float(right_top_vec_hand_y[i]) - float(right_bottom_vec_hand_y[i]))/(float(right_top_vec_hand_x[i]) - float(right_bottom_vec_hand_x[i])))
 	intersection_right_hand.append( float(right_top_vec_hand_y[i]) - slope_right_hand[i]*float(right_top_vec_hand_x[i]))
 
+# Calculate the root-mean-square errors.
 error_rms_slope_left = 0
 error_rms_intersection_left = 0
 error_rms_slope_right = 0
 error_rms_intersection_right = 0
-
 
 for i in range(0, len(left_bottom_vec_algo_x)):
 	error_rms_slope_left = error_rms_slope_left + pow(slope_left_algo[i] - slope_left_hand[i], 2) 
@@ -104,6 +105,7 @@ error_rms_intersection_left = sqrt(error_rms_intersection_left)
 error_rms_slope_right = sqrt(error_rms_slope_right)
 error_rms_intersection_right = sqrt(error_rms_intersection_right)
 
+# Write the results to a text file.
 error = open(filename_result_w, 'w')
 error.write("Error_RMS in Slope left = " + str(error_rms_slope_left) + '\n')
 error.write("Error_RMS in Intersection left = " + str(error_rms_intersection_left) + '\n')

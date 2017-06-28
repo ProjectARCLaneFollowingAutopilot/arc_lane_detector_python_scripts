@@ -2,9 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Create a noisy set of data.
-
-# Polynomial of 2nd order.
+# Coefficients of a polynomial of 3rd order: y = a*x³ + b*x² + c*x + d.
 a = 4
 b = 1
 c = 10
@@ -23,7 +21,7 @@ e.close()  # you can omit in most cases as the destructor will call it
 
 # Create the data set (and add noise).
 x = np.linspace(-5.0, 5.0, 2000)
-y = a*pow(x, 3) + b*pow(x, 2) + c*(x) + d					#a*x*x*x + b*x*x + c*x + d
+y = a*pow(x, 3) + b*pow(x, 2) + c*(x) + d				
 noise = np.random.normal(0, 100, 2000)
 y_noise = y + noise
 
