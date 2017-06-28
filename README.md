@@ -11,6 +11,6 @@ We have tested the scripts in **Ubuntu 14.04** and developed it using **Python 2
 
 #3. Scripts
 
-*generatedata
-*labelled_data_evaluation
-*plotpolynom
+* ros
+* kindr (https://github.com/ethz-asl/kindr)
+* lightweight_filtering (as submodule, use "git submodule update --init --recursive")
